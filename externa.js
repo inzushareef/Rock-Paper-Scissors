@@ -32,3 +32,13 @@ function playRound(ComputerSelection,PlayerSelection){
     return result;
 }
 
+function game(number){
+    for (let i=0 ; i<number; i++){
+        let PlayerSelection = prompt("Please Choose your choice from (Rock,Paper,Scissors) :");
+
+        alert((playRound(ComputerPlay(),PlayerSelection)));
+    }
+}
+let number = prompt("Please enter how many rounds of game is this : ");
+
+game(number);
