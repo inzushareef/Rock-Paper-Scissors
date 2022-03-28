@@ -15,16 +15,20 @@ function ComputerPlay(){
 
 function playRound(ComputerSelection,PlayerSelection){
     PlayerSelection = Captalize(PlayerSelection);
+    let result;
     if (ComputerSelection == PlayerSelection){
-        console.log("Both the selections are same. Please Try again!");
+        //console.log("Both the selections are same. Please Try again!");
+        result = ("Both the selections are same. Please Try again!");
 
     }
     else if((ComputerSelection == "Rock" && PlayerSelection == "Scissors") || (ComputerSelection == "Paper" && PlayerSelection == "Rock") || (ComputerSelection == "Scissors" && PlayerSelection == "Paper")){
-        console.log("You loose " + ComputerSelection +" beats "+ PlayerSelection);
-    
+        //console.log("You loose " + ComputerSelection +" beats "+ PlayerSelection);
+        result = ("You loose " + ComputerSelection +" beats "+ PlayerSelection);
     }
     else {
-        console.log("YOU WIN !!" + PlayerSelection +" beats "+ ComputerSelection );
+        //console.log("YOU WIN !!" + PlayerSelection +" beats "+ ComputerSelection );
+        result = ("YOU WIN !!" + PlayerSelection +" beats "+ ComputerSelection);
     }
+    return result;
 }
 
