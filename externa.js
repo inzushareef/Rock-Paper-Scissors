@@ -16,6 +16,8 @@ function ComputerPlay(){
     //generates Random number between 0 , 1, 2
     let index = Math.floor(Math.random()*3);
     //console.log(index);
+    const comp = document.querySelector('#computer');
+    comp.innerText = arr[index];
     return arr[index];  
 }
 
@@ -24,17 +26,19 @@ function playRound(ComputerSelection,PlayerSelection){
     let result;
     if (ComputerSelection == PlayerSelection){
         //console.log("Both the selections are same. Please Try again!");
-        result = ("Both the selections are same. Please Try again!");
+        result = "Both the selections are same. Please Try again!";
 
     }
     else if((ComputerSelection == "Rock" && PlayerSelection == "Scissors") || (ComputerSelection == "Paper" && PlayerSelection == "Rock") || (ComputerSelection == "Scissors" && PlayerSelection == "Paper")){
         //console.log("You loose " + ComputerSelection +" beats "+ PlayerSelection);
         result = ("You loose " + ComputerSelection +" beats "+ PlayerSelection);
+        //result = "Computer";
         Computerscore++;
     }
     else {
         //console.log("YOU WIN !!" + PlayerSelection +" beats "+ ComputerSelection );
         result = ("YOU WIN !! " + PlayerSelection +" beats "+ ComputerSelection);
+        //result = "Player"
         Playerscore++;
     }
     return result;
@@ -78,13 +82,33 @@ function playRound(ComputerSelection,PlayerSelection){
 //     console.log(e);
 // });
 
+
+function game(PlayerSelection){
+    while(Playerscore!=5 && Computerscore!=5){
+
+        const re = playRound(ComputerPlay(), PlayerSelection);
+        console.log(re);
+    }
+}
+
+// game(PlayerSelection);
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
     button.addEventListener('click',() => {
-        console.log(button.id);
+        //console.log(button.id);
         const result = playRound(ComputerPlay(),button.id);
-        alert(result);
+        //alert(result);
+        const change = document.querySelector('#Change'); 
+        change.innerText = result;
+        const player = document.querySelector('#player-score');
+        player.innerText = Playerscore;
+        const computer = document.querySelector('#computer-score');
+        computer.innerText = Computerscore;
+        if(Playerscore == 5 || Computerscore == 5){
+            return;
+        }
 
     });
 });
