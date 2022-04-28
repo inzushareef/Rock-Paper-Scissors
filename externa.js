@@ -21,6 +21,7 @@ function ComputerPlay(){
     return arr[index];  
 }
 
+
 function playRound(ComputerSelection,PlayerSelection){
     PlayerSelection = Captalize(PlayerSelection);
     let result;
@@ -93,12 +94,20 @@ function game(PlayerSelection){
 
 // game(PlayerSelection);
 
+function refresh(){
+    window.location.reload(true);
+}
+
+
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
     button.addEventListener('click',() => {
         //console.log(button.id);
-        const result = playRound(ComputerPlay(),button.id);
+        
+        if (Playerscore != 5 && Computerscore != 5){
+            const result = playRound(ComputerPlay(),button.id);
         //alert(result);
         const change = document.querySelector('#Change'); 
         change.innerText = result;
@@ -106,9 +115,21 @@ buttons.forEach(button => {
         player.innerText = Playerscore;
         const computer = document.querySelector('#computer-score');
         computer.innerText = Computerscore;
-        if(Playerscore == 5 || Computerscore == 5){
-            return;
+            
+        }
+        else{
+            const playagain = document.querySelector('#Playagain');
+            const again_button = document.createElement('button');
+            again_button.classList.add('again');
+            again_button.innerText = "Play Again";
+            playagain.appendChild(again_button);
+            
+            const playagain_button = document.querySelector('.again');
+            playagain_button.addEventListener('click',refresh());
         }
 
     });
-});
+    
+}
+);
+
